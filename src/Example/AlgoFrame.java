@@ -40,26 +40,48 @@ public class AlgoFrame extends JFrame{
 	public AlgoFrame(String title) {
 		this(title,1024,768);
 	}
+	private Circle[] circles;
+	public void render(Circle[] circles) {
+		this.circles = circles;
+//		repaint canvas
+		this.repaint();
+		
+		
+	}
+
+	
+	
+	
 	private class AlgoCanvas extends JPanel{
 		//use this g to paint
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			
-			// draw oval
-//			g.drawOval(50, 50, 300, 300);
-//			convert to 2d
-//			create line width
-			int strokeWidth = 10;
+		
 
 			Graphics2D g2d = (Graphics2D)g;
-			g2d.setColor(Color.RED);
-			Ellipse2D circle =  new Ellipse2D.Double(50,50,300,300);
-			g2d.draw(circle);
-			g2d.setStroke(new BasicStroke(strokeWidth));
-			//draw a solid circle
-			Ellipse2D circle2 =  new Ellipse2D.Double(60,60,280,280);
-			g2d.fill(circle2);
+//			anti-aliased:
+			RenderingHints hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+			
+			//actually drawing
+//			AlgoVisHelper.setColor(g2d,Color.BLUE);
+//			AlgoVisHelper.setStrokeWidth(g2d,5);
+//			AlgoVisHelper.fillCircle(g2d, canvasWidth/2,canvasHeight/2 ,200 );
+//			AlgoVisHelper.setColor(g2d,Color.RED);
+//			AlgoVisHelper.strokeCircle(g2d, canvasWidth/2,canvasHeight/2 ,200 );
+			
+			AlgoVisHelper.setStrokeWidth(g2d, 1);
+			AlgoVisHelper.setColor(g2d, Color.red);
+            for(Circle circle: circles) {
+                if(circle.isFilled)
+                    AlgoVisHelper.fillCircle(g2d, circle.x, circle.y, circle.getR());
+                else
+                    AlgoVisHelper.strokeCircle(g2d, circle.x, circle.y, circle.getR());
+			
+            }
+			
+			
+
 					
 			
 		}
