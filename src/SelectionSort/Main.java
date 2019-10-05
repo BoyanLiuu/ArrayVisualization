@@ -1,4 +1,4 @@
-package Example;
+package SelectionSort;
 import java.awt.EventQueue;
 import java.util.Random;
 
