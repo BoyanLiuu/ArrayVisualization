@@ -26,7 +26,7 @@ public class AlgoVisualizer {
         });
     }
 
-    	// animation algorithm
+    	// Sorting animation algorithm
  private void run(){
 
 	 	setData(0, -1, -1);
